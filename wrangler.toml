@@ -1,0 +1,7 @@
+name = "oghunt-trmnl"
+main = "src/index.tsx"
+compatibility_date = "2025-03-13"
+workers_dev = true
+
+[observability]
+enabled = true
