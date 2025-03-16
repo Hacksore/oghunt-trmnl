@@ -1,5 +1,7 @@
 import { Hono } from 'hono'
+import { html } from 'hono/html';
 import { FC } from 'hono/jsx';
+import { renderToString } from 'hono/jsx/dom/server';
 
 const Layout: FC = () => {
   return (
@@ -49,11 +51,13 @@ app.get('/oauth/trmnl/install', (c) => {
   return c.json({ error: 'not implemented' })
 })
 
-app.get('/integrations/trmnl/markup', (c) => {
-  return c.html(<Layout />)
+app.post('/integrations/trmnl/markup', (c) => {
+  return c.json({
+    markup: renderToString(<Layout />)
+  })
 })
 
-app.get('/hooks/trmnl/uninstall', (c) => {
+app.post('/hooks/trmnl/uninstall', (c) => {
   const body = c.req.json()
 
   console.log("uninstalling trmnl integration", body)
