@@ -1,5 +1,11 @@
 import { Hono } from 'hono'
+import { FC } from 'hono/jsx';
 
+const Layout: FC = () => {
+  return (
+    <p>testing jsx</p>
+  )
+}
 
 export type Bindings = {
   CLIENT_ID: string;
@@ -44,7 +50,7 @@ app.get('/oauth/trmnl/install', (c) => {
 })
 
 app.get('/integrations/trmnl/markup', (c) => {
-  return c.json({ error: 'not implemented' })
+  return c.html(<Layout />)
 })
 
 app.get('/hooks/trmnl/uninstall', (c) => {
