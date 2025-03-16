@@ -1,8 +1,2 @@
-```
-npm install
-npm run dev
-```
-
-```
-npm run deploy
-```
+# trmnl-oghunt
+A plugin to show the top five product hunt launches without AI.
