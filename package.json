@@ -4,6 +4,7 @@
     "dev": "wrangler dev",
     "deploy": "wrangler deploy --minify",
     "format": "biome format --write",
+    "preview": "docker compose up",
     "cf-typegen": "wrangler types --env-interface CloudflareBindings"
   },
   "dependencies": {

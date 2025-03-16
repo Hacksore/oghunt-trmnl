@@ -14,7 +14,12 @@ export const Markup: FC<{ posts: Post[] }> = ({ posts }: { posts: Post[] }) => {
   const allPosts = posts.map((post) => (
     <div key={post.id}>
       <div class="flex pb-2">
-        <img src={post.thumbnailUrl} class="w-8 h-8 mr-4" alt={post.name} />
+        <img
+          src={post.thumbnailUrl}
+          style={{ width: 24, height: 24 }}
+          class="mr-4"
+          alt={post.name}
+        />
         <h2 class="font-bold">{post.name}</h2>
       </div>
       <p>{post.tagline}</p>
@@ -22,7 +27,7 @@ export const Markup: FC<{ posts: Post[] }> = ({ posts }: { posts: Post[] }) => {
   ));
 
   return (
-    <div class="flex flex-col gap-4">
+    <div class="gap--small">
       <h2 class="text-2xl font-bold">🚀 Top 5 oghunt.com launches</h2>
       {allPosts}
     </div>

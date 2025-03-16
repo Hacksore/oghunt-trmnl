@@ -1,6 +1,6 @@
 import { Hono } from "hono";
 import { renderToString } from "hono/jsx/dom/server";
-import { Markup, Post } from "./markup";
+import { Markup, type Post } from "./markup";
 
 export type Bindings = {
   CLIENT_ID: string;
@@ -62,19 +62,7 @@ app.post("/integrations/trmnl/markup", async (c) => {
 app.get("/preview", async (c) => {
   const posts = await getPosts();
 
-  return c.html(
-    <html lang="en">
-      <head>
-        <meta charSet="utf-8" />
-        <meta content="width=device-width, initial-scale=1" name="viewport" />
-        <title>TRMNL Integration</title>
-        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4" />
-      </head>
-      <body>
-        <Markup posts={posts} />
-      </body>
-    </html>,
-  );
+  return c.json(posts);
 });
 
 app.post("/hooks/trmnl/uninstall", (c) => {
