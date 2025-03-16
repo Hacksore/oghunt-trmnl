@@ -33,4 +33,8 @@ app.get('/hooks/trmnl/uninstall', (c) => {
   return c.json({ error: 'not implemented' })
 })
 
+app.get('/', (c) => {
+  return c.json({ message: 'Hi TRMNL' })
+})
+
 export default app
