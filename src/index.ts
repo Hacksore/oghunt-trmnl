@@ -1,24 +1,42 @@
 import { Hono } from 'hono'
 
-const app = new Hono<{ Bindings: CloudflareBindings }>()
 
-// Installation URL
-// https://api.oghunt.com/oauth/trmnl/new
-//
-// Installation Success Webhook URL
-// https://api.oghunt.com/oauth/trmnl/install
-//
-// Plugin Management URL
-// https://api.oghunt.com/settings
-//
-// Plugin Markup URL
-// https://api.oghunt.com/integrations/trmnl/markup
-//
-// Uninstallation Webhook URL
-// https://api.oghunt.com/hooks/trmnl/uninstall
+export type Bindings = {
+  CLIENT_ID: string;
+  CLIENT_SECRET: string;
+};
 
-app.get('/oauth/trmnl/new', (c) => {
-  return c.json({ error: 'not implemented' })
+const app = new Hono<{ Bindings: Bindings }>()
+
+app.get('/oauth/trmnl/new', async (c) => {
+  const { code, installation_callback_url } = c.req.query()
+
+  if (!code || !installation_callback_url) {
+    return c.json({ error: 'Missing code or installation_callback_url' }, 400)
+  }
+
+  const response = await fetch('https://usetrmnl.com/oauth/token', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      code,
+      client_id: c.env.CLIENT_ID,
+      client_secret: c.env.CLIENT_SECRET,
+      grant_type: 'authorization_code',
+    }),
+  })
+
+  const data = await response.json()
+
+  console.log("Installing trmnl integration", data)
+
+  if (response.status !== 200) {
+    return c.json({ error: 'Failed to exchange code for token' }, 500)
+  }
+
+  return c.redirect(installation_callback_url)
 })
 
 app.get('/oauth/trmnl/install', (c) => {
@@ -30,7 +48,11 @@ app.get('/integrations/trmnl/markup', (c) => {
 })
 
 app.get('/hooks/trmnl/uninstall', (c) => {
-  return c.json({ error: 'not implemented' })
+  const body = c.req.json()
+
+  console.log("uninstalling trmnl integration", body)
+
+  return c.json({ message: 'ok' })
 })
 
 app.get('/', (c) => {
