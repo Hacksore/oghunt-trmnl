@@ -9,6 +9,14 @@ export type Bindings = {
 
 const app = new Hono<{ Bindings: Bindings }>();
 
+const getPosts = async () => {
+  const posts = (await fetch("https://oghunt.com/api/list", {}).then((res) =>
+    res.json(),
+  )) as Post[];
+
+  return posts.slice(0, 5);
+};
+
 app.get("/oauth/trmnl/new", async (c) => {
   const { code, installation_callback_url } = c.req.query();
 
@@ -45,13 +53,28 @@ app.get("/oauth/trmnl/install", (c) => {
 });
 
 app.post("/integrations/trmnl/markup", async (c) => {
-  const posts = (await fetch("https://oghunt.com/api/list", {}).then((res) =>
-    res.json(),
-  )) as Post[];
-
+  const posts = await getPosts();
   return c.json({
     markup: renderToString(<Markup posts={posts} />),
   });
+});
+
+app.get("/preview", async (c) => {
+  const posts = await getPosts();
+
+  return c.html(
+    <html lang="en">
+      <head>
+        <meta charSet="utf-8" />
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
+        <title>TRMNL Integration</title>
+        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4" />
+      </head>
+      <body>
+        <Markup posts={posts} />
+      </body>
+    </html>,
+  );
 });
 
 app.post("/hooks/trmnl/uninstall", (c) => {
