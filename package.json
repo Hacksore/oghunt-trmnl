@@ -2,9 +2,9 @@
   "name": "oghunt-trmnl",
   "scripts": {
     "dev": "pnpm start",
-    "start": "concurrently pnpm:dev:wrangler pnpm:dev:dicker",
+    "start": "concurrently pnpm:dev:wrangler pnpm:dev:docker",
     "dev:wrangler": "wrangler dev --ip 0.0.0.0",
-    "dev:dicker": "docker compose up",
+    "dev:docker": "docker compose up",
     "deploy": "wrangler deploy --minify",
     "format": "biome format --write",
     "preview": "docker compose up",

@@ -11,5 +11,4 @@ pnpm dev
 
 ### Simulator
 
-TODO: we need to not use local LAN ip address
-TODO: we need to allow watching in the preview plugin for src/*
+TODO: create feature reuest, we need to allow watching in the preview plugin for src/*
