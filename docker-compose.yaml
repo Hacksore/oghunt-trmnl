@@ -2,7 +2,10 @@ services:
   trmnlp:
     image: schrockwell/trmnlp
     ports:
-      - 4567:4567
+     - target: 4567 
+       published: 4567 
+       protocol: tcp
+       mode: host
     volumes:
       - .:/plugin
     restart: unless-stopped

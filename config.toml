@@ -1,2 +1,2 @@
 strategy = "polling"
-url = "http://192.168.3.130:8787/preview"
+url = "http://127.0.0.1:8787/integrations/trmnl/markup"

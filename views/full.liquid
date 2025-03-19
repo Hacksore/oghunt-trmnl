@@ -1,7 +1,7 @@
 <script>
   
   // TODO: how can we make this url more stable
-  const response = fetch("http://192.168.3.130:8787/integrations/trmnl/markup", { method: "POST" }).then(res => res.json())
+  const response = fetch("http://127.0.0.1:8787/integrations/trmnl/markup", { method: "POST" }).then(res => res.json())
   .then(data => {
     const element = document.querySelector("div");
     element.innerHTML = data.markup;
