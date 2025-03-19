@@ -1,2 +1,2 @@
 strategy = "polling"
-url = "http://localhost:8787/preview"
+url = "http://192.168.3.130:8787/preview"

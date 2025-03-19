@@ -9,6 +9,16 @@ export type Bindings = {
 
 const app = new Hono<{ Bindings: Bindings }>();
 
+app.use("*", (c, next) => {
+  c.header("Access-Control-Allow-Origin", "*");
+  c.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+  c.header(
+    "Access-Control-Allow-Headers",
+    "Content-Type, Authorization, X-Requested-With",
+  );
+  return next();
+})
+
 const getPosts = async () => {
   const posts = (await fetch("https://oghunt.com/api/list", {}).then((res) =>
     res.json(),

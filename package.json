@@ -1,7 +1,7 @@
 {
   "name": "oghunt-trmnl",
   "scripts": {
-    "dev": "wrangler dev",
+    "dev": "wrangler dev --ip 0.0.0.0",
     "deploy": "wrangler deploy --minify",
     "format": "biome format --write",
     "preview": "docker compose up",
@@ -14,5 +14,6 @@
     "@biomejs/biome": "1.9.4",
     "@cloudflare/workers-types": "^4.20250313.0",
     "wrangler": "^4.0.0"
-  }
+  },
+  "packageManager": "pnpm@10.6.4"
 }

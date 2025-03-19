@@ -1,7 +1,11 @@
-<div class="layout grid">
-  test
-</div>
+<script>
+  
+  const response = fetch("http://192.168.3.130:8787/integrations/trmnl/markup", { method: "POST" }).then(res => res.json())
+  .then(data => {
+    const element = document.querySelector("div");
+    element.innerHTML = data.markup;
+  });
 
-<div class="title_bar">
-  <span class="title">why no work</span>
+</script>
+<div>
 </div>
