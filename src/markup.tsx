@@ -10,26 +10,34 @@ export interface Post {
   votesCount: number;
 }
 
+const truncateText = (text: string, length: number) => {
+  return text.length > length ? text.slice(0, length) + "..." : text;
+};
+
 export const Markup: FC<{ posts: Post[] }> = ({ posts }: { posts: Post[] }) => {
   const allPosts = posts.map((post) => (
     <div key={post.id}>
-      <div class="flex pb-2">
+      <div class="flex">
         <img
           src={post.thumbnailUrl}
-          style={{ width: 24, height: 24 }}
+          style={{ width: 28, height: 28 }}
           class="mr-4"
           alt={post.name}
         />
-        <h2 class="font-bold">{post.name}</h2>
+        <h2>
+          {truncateText(`${post.name} - ${post.tagline}`, 64)}
+        </h2>
       </div>
-      <p>{post.tagline}</p>
+      <p>{truncateText(post.description, 220)}</p>
     </div>
   ));
 
   return (
-    <div class="gap--small">
-      <h2 class="text-2xl font-bold">🚀 Top 5 oghunt.com launches</h2>
-      {allPosts}
-    </div>
+    <>
+      <div class="layout layout--col layout--stretch">{allPosts}</div>
+      <div class="title_bar">
+        <span class="title">oghunt.com launches today</span>
+      </div>
+    </>
   );
 };

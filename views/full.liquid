@@ -1,12 +1,10 @@
 <script>
-  
-  fetch("http://127.0.0.1:8787/integrations/trmnl/markup", { method: "POST" }).then(res => res.json())
-  .then(data => {
-    const element = document.querySelector("div");
-    element.innerHTML = data.markup;
-  });
-
+  window.onload = function() {
+    fetch("http://127.0.0.1:8787/integrations/trmnl/markup", { method: "POST" }).then(res => res.json())
+    .then(data => {
+      const element = document.querySelector(".view--full");
+      element.innerHTML = data.markup;
+    });
+  }
 </script>
 
-<div>
-</div>
