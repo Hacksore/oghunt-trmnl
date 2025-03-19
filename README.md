@@ -10,10 +10,6 @@ pnpm dev
 ```
 
 ### Simulator
-still borked but
 
-```
-pnpm preview
-
-```
-then if it works go to http://localhost:4567
+TODO: we need to not use local LAN ip address
+TODO: we need to allow watching in the preview plugin for src/*
