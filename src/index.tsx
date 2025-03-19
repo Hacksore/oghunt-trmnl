@@ -17,7 +17,7 @@ app.use("*", (c, next) => {
     "Content-Type, Authorization, X-Requested-With",
   );
   return next();
-})
+});
 
 const getPosts = async () => {
   const posts = (await fetch("https://oghunt.com/api/list", {}).then((res) =>
