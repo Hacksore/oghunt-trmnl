@@ -1,0 +1,11 @@
+watch:
+  - src
+  - .trmnlp.yml
+
+# override variables
+variables:
+  trmnl:
+    user:
+      name: Peter Quill
+    plugin_settings:
+      instance_name: Kevin Bacon Facts

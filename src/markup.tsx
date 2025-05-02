@@ -24,9 +24,7 @@ export const Markup: FC<{ posts: Post[] }> = ({ posts }: { posts: Post[] }) => {
           class="mr-4"
           alt={post.name}
         />
-        <h2>
-          {truncateText(`${post.name} - ${post.tagline}`, 64)}
-        </h2>
+        <h2>{truncateText(`${post.name} - ${post.tagline}`, 64)}</h2>
       </div>
       <p>{truncateText(post.description, 220)}</p>
     </div>

@@ -1,2 +1,0 @@
-strategy = "polling"
-url = "http://host.docker.internal:8787/preview"

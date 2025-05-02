@@ -24,7 +24,7 @@ const getPosts = async () => {
     res.json(),
   )) as Post[];
 
-  return posts.slice(0, 5);
+  return posts.slice(0, 3);
 };
 
 app.get("/oauth/trmnl/new", async (c) => {

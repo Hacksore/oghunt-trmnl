@@ -1,6 +1,6 @@
 services:
   trmnlp:
-    image: schrockwell/trmnlp
+    image: trmnl/trmnlp
     ports:
      - 4567:4567 
     volumes:
