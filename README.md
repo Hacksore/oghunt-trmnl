@@ -18,7 +18,7 @@ Before you begin, ensure you have the following installed:
 - pnpm (v8 or higher)
 - Docker (optional, for containerized development)
 
-## Getting Started
+## Development
 
 1. Clone the repository:
 ```bash
@@ -36,23 +36,8 @@ pnpm install
 pnpm start
 ```
 
-4. Access the application:
-Once started, the application will be available in your terminal. The exact access method will depend on your terminal configuration.
-
-## Development
-
-The project uses pnpm as the package manager. Here are some common development commands:
-
-```bash
-# Install dependencies
-pnpm install
-
-# Start development server
-pnpm dev
-
-# Build for production
-pnpm build
-```
+4. View the simulator:
+Open your browser and navigate to [http://127.0.0.1:4567/full](http://127.0.0.1:4567/full) to see the plugin in action.
 
 ## Contributing
 
