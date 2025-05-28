@@ -27,7 +27,7 @@ const getPosts = async () => {
   return posts.slice(0, 3);
 };
 
-app.get("/oauth/trmnl/new", async (c) => {
+app.get("/oauth/callback", async (c) => {
   const { code, installation_callback_url } = c.req.query();
 
   if (!code || !installation_callback_url) {
@@ -58,11 +58,11 @@ app.get("/oauth/trmnl/new", async (c) => {
   return c.redirect(installation_callback_url);
 });
 
-app.get("/oauth/trmnl/install", (c) => {
+app.get("/install", (c) => {
   return c.json({ error: "not implemented" });
 });
 
-app.post("/integrations/trmnl/markup", async (c) => {
+app.post("/markup", async (c) => {
   const posts = await getPosts();
   return c.json({
     markup: renderToString(<Markup posts={posts} />),
@@ -75,7 +75,7 @@ app.get("/preview", async (c) => {
   return c.json(posts);
 });
 
-app.post("/hooks/trmnl/uninstall", (c) => {
+app.post("/uninstall", (c) => {
   const body = c.req.json();
 
   console.log("uninstalling trmnl integration", body);
