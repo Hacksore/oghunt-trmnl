@@ -1,6 +1,7 @@
 import { Hono } from "hono";
 import { renderToString } from "hono/jsx/dom/server";
 import { Markup, type Post } from "./markup";
+import { Settings } from "./settings";
 
 export type Bindings = {
   CLIENT_ID: string;
@@ -81,6 +82,10 @@ app.post("/uninstall", (c) => {
   console.log("uninstalling trmnl integration", body);
 
   return c.json({ message: "ok" });
+});
+
+app.get("/settings", (c) => {
+  return c.html(renderToString(<Settings />));
 });
 
 app.get("/", (c) => {
